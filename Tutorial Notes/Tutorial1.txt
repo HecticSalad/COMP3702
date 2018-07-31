@@ -1,0 +1,28 @@
+Tutorial 1:
+
+-World dynamics defines the operation: using the current state with the action space to produce the next state space. If your world dynamics isa  function that perfectly
+	maps from current state to a set of next states, the problem is deterministic.
+
+-Fully observable if your current state is completely defined by your percept space. If it is fully observable, percept function will be a direction mapping (bijection)
+	from your percept space to your current state. If it is not fully observable, a percept function may be required to transform the information in your percept
+	space to estimate your current state.
+
+-In a non-deterministic problem, the world dynamics will contain the unknown operations of the world (other players, randomness etc)
+
+-Percept space will define what your STATE is. (Where are you, what are you doing, what direction are you going etc..)
+
+
+Question 2:
+
+State space - current position (longitude, latitude, address etc..)
+Percept space - equal to state space if our state is just out longitude/latitude. But it is a continuous problem, so after receiving a percept the car may have moved. 
+	So, we may need a percept function to calculate where we are at any given time based on our alst known location and velocity etc.
+Utility function - +100 on arrival, -1 for every meter traveled.
+
+Question 3:
+
+State - The current html page address that you are at plus the pages you have visited. Includes information from the webpage because if you come back to the same
+	link a year later, it could be a totally different webpage.
+Action - Navigate to a child link
+Action space - All of the possible links we can navigate to
+Utility function - +1 for every link visited, -1 if you've already been in that state before. More points if the webpage is faster.
