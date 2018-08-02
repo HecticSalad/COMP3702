@@ -10,7 +10,8 @@ Tutorial 1:
 -In a non-deterministic problem, the world dynamics will contain the unknown operations of the world (other players, randomness etc)
 
 -Percept space will define what your STATE is. (Where are you, what are you doing, what direction are you going etc..)
-
+-Whether or not it is deterministic depends on the time step. In tic-tac-toe, if one timestep is our move and the opponents move, then the problem is non-deterministic
+	because we don't know exactly what the opponent will do (ie. we can't determine the exact state of the game after one time-step)
 
 Question 2:
 
