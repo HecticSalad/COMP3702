@@ -15,6 +15,9 @@ Tutorial 1:
 
 -If system is fully observable, we dont need a percept space and we dont need a percept function
 
+-Be careful when using reward instead of cost inside utility function, because optimal solutino is funding the maximum total weight, that will be unsolvable so make a negation
+	of reward so we find the shortest path: from computational point of view.
+
 Question 2:
 
 State space - current position (longitude, latitude, address etc..)
