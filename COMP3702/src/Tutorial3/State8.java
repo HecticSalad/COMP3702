@@ -1,4 +1,4 @@
-package Tutorial2;
+package Tutorial3;
 import java.util.ArrayList;
 
 public class State8 implements Comparable<State8>{

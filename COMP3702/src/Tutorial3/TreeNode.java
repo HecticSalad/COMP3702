@@ -1,19 +1,24 @@
-package Tutorial2;
-import java.util.*;
+package Tutorial3;
+
+import java.util.ArrayList;
 
 public class TreeNode<T> implements Comparable<TreeNode<T>>{
 
     private T state;
     private TreeNode<T> parent;
     private ArrayList<TreeNode> children;
+    private int cost;
+    private int heuristic;
 
-    public TreeNode(T item) {
+    public TreeNode(T item, int cost, int heuristic) {
         state = item;
         children = new ArrayList<TreeNode>();
+        this.cost = cost;
+        this.heuristic = heuristic;
     }
 
-    public TreeNode<T> addChild(T item){
-        TreeNode<T> currentChild = new TreeNode<T>(item);
+    public TreeNode<T> addChild(T item, int heuristic){
+        TreeNode<T> currentChild = new TreeNode<T>(item,this.cost + 1, heuristic);
 
         currentChild.setParent(this);
         children.add(currentChild);
@@ -59,8 +64,25 @@ public class TreeNode<T> implements Comparable<TreeNode<T>>{
         parent = thisParent;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    public int getHeuristic() {
+        return heuristic;
+    }
+
     public int compareTo(TreeNode<T> item) {
-        return this.compareTo(item);
+        int itemTotal = item.getCost() + item.getHeuristic();
+        int myTotal = getCost() + getHeuristic();
+
+        if (itemTotal > myTotal) {
+            return -1;
+        } else if (itemTotal < myTotal) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

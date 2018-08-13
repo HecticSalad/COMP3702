@@ -7,6 +7,8 @@ public class BFS {
 
     private State8 initialState;
     private State8 goalState;
+    private LinkedList<TreeNode<State8>> visitedNodes;
+    private ArrayList<State8> path;
 
     public BFS(State8 initial, State8 goal) {
         initialState = initial;
@@ -14,7 +16,7 @@ public class BFS {
 
     }
 
-    public ArrayList<State8> findPath() {
+    public void findPath() {
         //Define current state as a tree node, and the world dynamics as a list of states
         TreeNode<State8> currentState;
         ArrayList<State8> worldDynamics;
@@ -23,7 +25,7 @@ public class BFS {
         TreeNode<State8> root = new TreeNode<State8>(initialState);
 
         //Initialise the visited nodes as a list of tree nodes of states. Add the root node.
-        LinkedList<TreeNode<State8>> visitedNodes = new LinkedList<TreeNode<State8>>();
+        visitedNodes = new LinkedList<TreeNode<State8>>();
 
         //Initialise the queue as a list of tree nodes of states. Add the root.
         LinkedList<TreeNode<State8>> stateQueue = new LinkedList<TreeNode<State8>>();
@@ -33,10 +35,14 @@ public class BFS {
         while(true) {
 
             //Pop off the last item and set it to the current state
-            currentState = stateQueue.poll();
+            currentState = stateQueue.pop();
             //If this is the goal state, return.
             if (currentState.getState().equals(goalState)) {
-                return getPath(currentState);
+                System.out.println("Goal state has been achieved.\n");
+                System.out.println("Goal state: " + goalState.toString() + "\n");
+                System.out.println("Current state: " + currentState.toString() + "\n");
+                path = determinePath(currentState);
+                return;
             }
 
             //Remove currentState from the queue and add to visited vertices
@@ -47,15 +53,15 @@ public class BFS {
             for (State8 state : worldDynamics) {
                 TreeNode<State8> child = new TreeNode<State8>(state);
                 if (!visitedNodes.contains(child)) {
-                    stateQueue.add(child);
                     child = currentState.addChild(state);
+                    stateQueue.addFirst(child);
                 }
 
             }
         }
     }
 
-    private ArrayList<State8> getPath(TreeNode<State8> endNode) {
+    private ArrayList<State8> determinePath(TreeNode<State8> endNode) {
 
         ArrayList<State8> path = new ArrayList<State8>();
         path.add(endNode.getState());
@@ -66,6 +72,14 @@ public class BFS {
             parent = parent.getParent();
         }
 
+        return path;
+    }
+
+    public LinkedList<TreeNode<State8>> getVisitedNodes() {
+        return visitedNodes;
+    }
+
+    public ArrayList<State8> getPath() {
         return path;
     }
 }
