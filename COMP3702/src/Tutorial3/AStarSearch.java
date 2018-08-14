@@ -1,6 +1,7 @@
 package Tutorial3;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -8,7 +9,7 @@ public class AStarSearch {
 
     private State8 initialState;
     private State8 goalState;
-    private LinkedList<TreeNode<State8>> visitedNodes;
+    private HashSet<TreeNode<State8>> visitedNodes;
     private ArrayList<State8> path;
 
     public AStarSearch(Tutorial3.State8 initial, Tutorial3.State8 goal) {
@@ -24,7 +25,7 @@ public class AStarSearch {
         TreeNode<State8> root = new TreeNode<State8>(initialState, 0, calculateHeuristic(initialState));
 
         //Initialise the visited nodes as a list of tree nodes of states. Add the root node.
-        visitedNodes = new LinkedList<Tutorial3.TreeNode<Tutorial3.State8>>();
+        visitedNodes = new HashSet<Tutorial3.TreeNode<Tutorial3.State8>>();
 
         PriorityQueue<TreeNode<State8>> priorityStateQueue = new PriorityQueue<TreeNode<State8>>();
         priorityStateQueue.add(root);
@@ -87,7 +88,7 @@ public class AStarSearch {
         return path;
     }
 
-    public LinkedList<TreeNode<State8>> getVisitedNodes() {
+    public HashSet<TreeNode<State8>> getVisitedNodes() {
         return visitedNodes;
     }
 

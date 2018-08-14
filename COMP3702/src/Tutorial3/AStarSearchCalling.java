@@ -4,8 +4,8 @@ public class AStarSearchCalling {
 
     public static void main(String[] args) {
 
-        State8 initial = new State8("281463_75");
-        State8 goal = new State8("1238_4765");
+        State8 initial = new State8("123_45678");
+        State8 goal = new State8("12345678_");
 
         AStarSearch A = new AStarSearch(initial, goal);
         A.findPath();
